@@ -47,15 +47,18 @@
         const error = document.getElementById('error');
         const wrapper = document.getElementById('formWrapper');
 
-        /* ===== ЗАГРУЗКА СОХРАНЁННЫХ ДАННЫХ ===== */
+        /* ===== ЗАГРУЗКА СОСТОЯНИЯ ===== */
         window.addEventListener('load', () => {
-          const savedLogin = localStorage.getItem('rememberLogin');
-          const savedPassword = localStorage.getItem('rememberPassword');
+          const rememberEnabled = localStorage.getItem('rememberEnabled');
 
-          if (savedLogin && savedPassword) {
-            loginInput.value = savedLogin;
-            passwordInput.value = savedPassword;
+          if (rememberEnabled === 'true') {
+            loginInput.value = localStorage.getItem('rememberLogin') || '';
+            passwordInput.value = localStorage.getItem('rememberPassword') || '';
             rememberCheckbox.checked = true;
+          } else {
+            rememberCheckbox.checked = false;
+            loginInput.value = '';
+            passwordInput.value = '';
           }
         });
 
@@ -69,15 +72,14 @@
           if (login === 'admin' && pass === '1432') {
 
             if (rememberCheckbox.checked) {
+              localStorage.setItem('rememberEnabled', 'true');
               localStorage.setItem('rememberLogin', login);
               localStorage.setItem('rememberPassword', pass);
             } else {
-              localStorage.removeItem('rememberLogin');
-              localStorage.removeItem('rememberPassword');
+              localStorage.clear();
             }
 
             alert('Успешный вход');
-            // тут позже будет переход в систему
 
           } else {
             error.classList.add('show');
@@ -85,7 +87,7 @@
           }
         });
 
-        /* ===== УБРАТЬ ОШИБКУ ПРИ ФОКУСЕ ===== */
+        /* ===== СКРЫТИЕ ОШИБКИ ПРИ ФОКУСЕ ===== */
         function hideError() {
           error.classList.remove('show');
           wrapper.classList.remove('shift');
@@ -94,14 +96,14 @@
         loginInput.addEventListener('focus', hideError);
         passwordInput.addEventListener('focus', hideError);
 
-        /* ===== ЕСЛИ СНЯЛИ ГАЛОЧКУ — УДАЛЯЕМ ДАННЫЕ ===== */
+        /* ===== ЕСЛИ СНЯЛИ ГАЛОЧКУ — СРАЗУ ЧИСТИМ ===== */
         rememberCheckbox.addEventListener('change', () => {
           if (!rememberCheckbox.checked) {
-            localStorage.removeItem('rememberLogin');
-            localStorage.removeItem('rememberPassword');
+            localStorage.clear();
           }
         });
     </script>
+
 
 
 
