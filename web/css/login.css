@@ -9,6 +9,7 @@ body {
   color: #d0d0d0;
 }
 
+/* ===== ЭКРАН ===== */
 .login-screen {
   height: 100vh;
   display: flex;
@@ -16,13 +17,13 @@ body {
   justify-content: center;
 }
 
+/* ===== КОНТЕЙНЕР ===== */
 .login-box {
   width: 360px;
   text-align: center;
-  transform: translateY(-20px);
 }
 
-
+/* ===== ЛОГО ===== */
 .logo {
   user-select: none;
   -webkit-user-select: none;
@@ -37,66 +38,112 @@ body {
   -webkit-user-drag: none;
 }
 
+/* ===== INPUT ===== */
 .login-box input {
   width: 100%;
   height: 36px;
   margin-bottom: 14px;
+  padding: 0 10px;
+
   background: #3a3d42;
   border: 1px solid #5a5a5a;
-  color: #e0e0e0;
-  padding: 0 10px;
-  font-size: 13px;
   border-radius: 9px;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.6);
+
+  color: #e0e0e0;
+  font-size: 13px;
+
+  box-shadow: inset 0 0 0 rgba(0,0,0,0);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.35s ease,
+    background 0.3s ease;
 }
 
+/* hover (очень мягкий) */
+.login-box input:hover:not(:focus) {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.06);
+}
+
+/* ===== FOCUS + GLOW ===== */
 .login-box input:focus {
   outline: none;
   border-color: #ffb300;
+  background: #454a50;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 179, 0, 0.55),
+    0 0 10px rgba(255, 179, 0, 0.6),
+    0 0 22px rgba(255, 179, 0, 0.45),
+    0 0 38px rgba(255, 179, 0, 0.25);
+
+  animation: glowPulse 1.2s ease-in-out infinite alternate;
 }
 
-.remember label {
-  position: relative;
-  top: -3px;
+/* ===== GLOW ANIMATION ===== */
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 0 8px rgba(255, 179, 0, 0.4),
+      0 0 20px rgba(255, 179, 0, 0.25);
+  }
+  100% {
+    box-shadow:
+      0 0 14px rgba(255, 179, 0, 0.65),
+      0 0 32px rgba(255, 179, 0, 0.4);
+  }
 }
 
+/* ===== REMEMBER ME ===== */
 .remember {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 9px 0 14px 0;
-  font-size: 17px;      /* было слишком крупно */
+
+  font-size: 14px;
   color: #d0d0d0;
+
   position: relative;
-  top: -4px;   /* поднимает вверх */
+  top: -4px;
+}
+
+.remember label {
+  position: relative;
+  top: -2px;
 }
 
 .remember input[type="checkbox"] {
   width: 14px;
-  height: 14px;        /* ❗ ВАЖНО: квадрат, не 25px */
+  height: 14px;
   margin: 0;
   padding: 0;
+
   accent-color: #ffffff;
-  transform: translateY(-1px); /* микро-коррекция как в оригинале */
+  transform: translateY(-1px);
 }
 
-
-
+/* ===== BUTTON ===== */
 button {
   width: 100%;
   height: 40px;
+
   background: transparent;
   border: 1px solid #f5b000;
+  border-radius: 9px;
+
   color: #ffffff;
   font-size: 15px;
   cursor: pointer;
-  border-radius: 9px;
+
+  transition: background 0.25s ease;
 }
 
 button:hover {
   background: rgba(255, 179, 0, 0.08);
 }
 
+/* ===== FOOTER ===== */
 .footer {
   margin-top: 20px;
   display: flex;
@@ -108,16 +155,16 @@ button:hover {
   color: #8c8c8c;
 }
 
+/* ===== FORM SHIFT ===== */
 .form-wrapper {
   transition: transform 0.35s ease;
 }
 
-/* когда ошибка */
 .form-wrapper.shift {
   transform: translateY(18px);
 }
 
-/* красное поле ошибки */
+/* ===== ERROR BOX ===== */
 .error-box {
   height: 0;
   opacity: 0;
@@ -126,11 +173,12 @@ button:hover {
 
   background: #b32020;
   color: #ffffff;
+
   font-size: 13px;
   text-align: center;
+  line-height: 34px;
 
   border-radius: 4px;
-  line-height: 34px;
 
   transition:
     height 0.35s ease,
@@ -138,9 +186,14 @@ button:hover {
     margin-bottom 0.35s ease;
 }
 
-/* показ ошибки */
 .error-box.show {
   height: 34px;
   opacity: 1;
   margin-bottom: 12px;
+}
+
+/* ===== AUTOFILL FIX ===== */
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #3a3d42 inset;
+  -webkit-text-fill-color: #e0e0e0;
 }
