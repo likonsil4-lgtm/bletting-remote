@@ -107,3 +107,40 @@ button:hover {
 .footer span {
   color: #8c8c8c;
 }
+
+.form-wrapper {
+  transition: transform 0.35s ease;
+}
+
+/* когда ошибка */
+.form-wrapper.shift {
+  transform: translateY(18px);
+}
+
+/* красное поле ошибки */
+.error-box {
+  height: 0;
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+
+  background: #b32020;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: center;
+
+  border-radius: 4px;
+  line-height: 34px;
+
+  transition:
+    height 0.35s ease,
+    opacity 0.25s ease,
+    margin-bottom 0.35s ease;
+}
+
+/* показ ошибки */
+.error-box.show {
+  height: 34px;
+  opacity: 1;
+  margin-bottom: 12px;
+}

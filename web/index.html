@@ -10,24 +10,54 @@
 <div class="login-screen">
     <div class="login-box">
 
-        <img src="assets/logo.png" class="logo" alt="ASTRA GROUP" />
+        <!-- логотип (НЕ двигается) -->
+        <img src="assets/logo.png" class="logo" draggable="false">
 
-        <input type="text" placeholder="Имя пользователя" />
-        <input type="password" placeholder="Пароль" />
-
-        <div class="remember">
-            <input type="checkbox" id="remember">
-            <label for="remember">Запомнить меня</label>
+        <!-- красное сообщение -->
+        <div class="error-box" id="error">
+            Неправильное имя пользователя или пароль
         </div>
 
-        <button>Войти</button>
+        <!-- всё, что должно уезжать вниз -->
+        <div class="form-wrapper" id="formWrapper">
+            <form id="loginForm">
+                <input type="text" id="login" placeholder="Имя пользователя">
+                <input type="password" id="password" placeholder="Пароль">
 
-        <div class="footer">
-            <span>Версия 4.4.1.8809</span>
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Запомнить меня</label>
+                </div>
+
+                <button type="submit">Войти</button>
+            </form>
+
+            <div class="footer">
+                <span>Версия 1.1.1.1</span>
+            </div>
         </div>
 
     </div>
-</div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const error = document.getElementById('error');
+        const wrapper = document.getElementById('formWrapper');
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+
+          const login = document.getElementById('login').value;
+          const pass = document.getElementById('password').value;
+
+          if (login === 'admin' && pass === '1432') {
+            alert('Успешный вход');
+          } else {
+            error.classList.add('show');
+            wrapper.classList.add('shift');
+          }
+        });
+    </script>
 
 </body>
 </html>
