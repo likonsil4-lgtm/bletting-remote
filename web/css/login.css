@@ -43,10 +43,21 @@ body {
 }
 
 .remember {
-  text-align: left;
-  font-size: 12px;
-  margin: 8px 0 14px;
+  display: flex;
+  align-items: center;   /* вертикальное выравнивание */
+  gap: 8px;              /* расстояние между квадратиком и текстом */
+  margin: 14px 0 18px 0;
+  font-size: 16px;
+  color: #d0d0d0;
 }
+
+.remember input[type="checkbox"] {
+  width: 14px;
+  height: 25px;
+  margin: 0;             /* КРИТИЧНО — убирает смещение */
+  accent-color: #ffffff;
+}
+
 
 button {
   width: 100%;
