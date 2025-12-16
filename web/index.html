@@ -38,17 +38,19 @@
         </div>
 
     </div>
-
     <script>
         const form = document.getElementById('loginForm');
         const error = document.getElementById('error');
         const wrapper = document.getElementById('formWrapper');
 
+        const loginInput = document.getElementById('login');
+        const passwordInput = document.getElementById('password');
+
         form.addEventListener('submit', e => {
           e.preventDefault();
 
-          const login = document.getElementById('login').value;
-          const pass = document.getElementById('password').value;
+          const login = loginInput.value;
+          const pass = passwordInput.value;
 
           if (login === 'admin' && pass === '1432') {
             alert('Успешный вход');
@@ -57,7 +59,17 @@
             wrapper.classList.add('shift');
           }
         });
+
+        /* 🔥 СКРЫТИЕ ОШИБКИ ПРИ ФОКУСЕ */
+        function hideError() {
+          error.classList.remove('show');
+          wrapper.classList.remove('shift');
+        }
+
+        loginInput.addEventListener('focus', hideError);
+        passwordInput.addEventListener('focus', hideError);
     </script>
+
 
 </body>
 </html>
