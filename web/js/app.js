@@ -20,3 +20,19 @@ function login() {
     showError();
   }
 }
+
+// Проверка, что мы внутри Android WebView
+function isAndroidWebView() {
+  return typeof Android !== 'undefined';
+}
+
+// Пример вызова Android
+function notifyAndroid(event, data) {
+  if (isAndroidWebView()) {
+    Android.postMessage(JSON.stringify({
+      event,
+      data
+    }));
+  }
+}
+

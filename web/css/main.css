@@ -621,6 +621,36 @@ body {
   }
 }
 
+ /* ===== ANDROID WEBVIEW FIXES ===== */
+
+ html, body {
+   overscroll-behavior: none;
+   touch-action: manipulation;
+   -webkit-tap-highlight-color: transparent;
+ }
+
+ body {
+   overflow: hidden;
+ }
+
+ /* ===== TOUCH FRIENDLY UI ===== */
+
+ .menu-item,
+ .submenu-item,
+ .icon-btn,
+ .top-btn,
+ button {
+   min-height: 44px;
+ }
+
+/* ===== WEBVIEW MODE ===== */
+
+body.webview {
+  height: 100vh;
+  width: 100vw;
+}
+
+
 
 
 
