@@ -75,36 +75,6 @@ body {
   background: #2f3238;
 }
 
-.icon-mnemo {
-  width: 35px;     /* подгони под дизайн */
-  height: 35px;
-  display: block;
-}
-
-.icon-graf {
-  width: 35px;
-  height: 35px;
-  displey: block;
-}
-
-.icon-anal {
-  width: 35px;
-  height: 35px;
-  displey: block;
-}
-
-.icon-soob {
-  width: 35px;
-  height: 35px;
-  displey: block;
-}
-
-.icon-warn {
-  width: 35px;
-  height: 35px;
-  displey: block;
-}
-
 
 .sidebar {
   user-select: none;
@@ -113,11 +83,113 @@ body {
 }
 
 .menu-item {
-  display: flex;
-  align-items: center;   /* вертикальное выравнивание */
-  gap: 30px;             /* расстояние между иконкой и текстом */
-  padding: 14px 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    padding: 14px 18px;
+    color: #cfd3d8;
+    cursor: pointer;
+
+    transition:
+        background 0.35s ease,
+        color 0.25s ease,
+        box-shadow 0.35s ease;
 }
+
+.menu-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    width: 3px;
+    height: 80%;
+    background: transparent;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+.menu-item:hover {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 179, 0, 0.30),
+        rgba(255, 179, 0, 0.1),
+        transparent
+    );
+    color: #ffffff;
+
+    box-shadow:
+        inset 0 0 0 rgba(0,0,0,0),
+        inset 0 0 18px rgba(255, 179, 0, 0.08);
+}
+
+.menu-item:hover::before {
+    background: #ffb300;
+}
+
+.menu-item.active {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 179, 0, 0.40),
+        rgba(255, 179, 0, 0.2),
+        transparent
+    );
+    color: #ffffff;
+}
+
+.menu-item.active::before {
+    background: #ffb300;
+}
+
+
+.menu-item img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.75;
+    transition:
+        opacity 0.1s ease,
+        filter 0.6s ease;
+}
+
+.menu-item:hover img,
+.menu-item.active img {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(255, 179, 0, 0.9));
+}
+
+.menu-item.danger {
+    color: #ff6b6b;
+}
+
+.menu-item.danger:hover {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 80, 80, 0.35),
+        rgba(255, 80, 80, 0.4),
+        transparent
+    );
+    color: #ffffff;
+
+    box-shadow: inset 0 0 18px rgba(255, 80, 80, 0.25);
+}
+
+.menu-item.danger::before {
+    background: #ff4d4d;
+}
+
+.menu-item.danger img {
+    filter: drop-shadow(0 0 4px rgba(255, 80, 80, 0.6));
+}
+
+.sidebar {
+    user-select: none;
+}
+
+.menu-item:active {
+    transform: translateX(1px);
+}
+
 
 /* ===== ВЕРХНЯЯ ПАНЕЛЬ ===== */
 .top-bar {
