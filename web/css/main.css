@@ -650,6 +650,58 @@ body.webview {
   width: 100vw;
 }
 
+/* ===== MOBILE MODE ===== */
+
+body.mobile .content-body svg {
+  display: none;
+}
+
+/* ===== MOBILE CAMERA CARDS ===== */
+
+body.mobile .mobile-cameras {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+
+.camera-card {
+  background: #2b2f34;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+}
+
+.camera-card.gas {
+  border-left: 6px solid #3ba55d;
+}
+
+.camera-card.cold {
+  border-left: 6px solid #4aa3df;
+}
+
+.camera-title {
+  font-size: 15px;
+  color: #ccc;
+}
+
+.camera-value {
+  font-size: 26px;
+  margin-top: 6px;
+}
+
+/* ===== MOBILE TOP BAR ===== */
+
+body.mobile .top-right,
+body.mobile .top-btn {
+  display: none;
+}
+
+body.mobile .page-title {
+  font-size: 16px;
+}
+
+
 
 
 
