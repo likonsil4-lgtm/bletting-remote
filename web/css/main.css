@@ -74,3 +74,55 @@ body {
   flex: 1;
   background: #2f3238;
 }
+
+.icon-mnemo {
+  width: 35px;     /* подгони под дизайн */
+  height: 35px;
+  display: block;
+}
+
+.icon-graf {
+  width: 35px;
+  height: 35px;
+  displey: block;
+}
+
+.icon-anal {
+  width: 35px;
+  height: 35px;
+  displey: block;
+}
+
+.icon-soob {
+  width: 35px;
+  height: 35px;
+  displey: block;
+}
+
+.icon-warn {
+  width: 35px;
+  height: 35px;
+  displey: block;
+}
+
+
+.sidebar {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;   /* вертикальное выравнивание */
+  gap: 30px;             /* расстояние между иконкой и текстом */
+  padding: 14px 16px;
+}
+
+.menu-item .text {
+  position: relative;
+  top: -1px;             /* микро-подстройка вверх/вниз */
+}
+
+
+
