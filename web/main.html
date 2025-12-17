@@ -350,31 +350,25 @@
 </script>
 
 <script>
-    const mnemoMenu = document.getElementById('mnemoMenu');
-    const mnemoSubmenu = document.getElementById('mnemoSubmenu');
-
-    // по умолчанию — открыто
-    mnemoMenu.classList.add('expanded');
-    mnemoSubmenu.classList.remove('collapsed');
-
     mnemoMenu.addEventListener('click', () => {
-      const isCollapsed = mnemoSubmenu.classList.toggle('collapsed');
-      mnemoMenu.classList.toggle('expanded', !isCollapsed);
+      requestAnimationFrame(() => {
+        const isCollapsed = mnemoSubmenu.classList.toggle('collapsed');
+        mnemoMenu.classList.toggle('expanded', !isCollapsed);
+      });
     });
 </script>
-
 
 <script>
-    const gasMenu = document.getElementById('gasMenu');
-    const gasSubmenu = document.getElementById('gasSubmenu');
-
     gasMenu.addEventListener('click', (e) => {
-      e.stopPropagation(); // важно!
+      e.stopPropagation();
 
-      const isCollapsed = gasSubmenu.classList.toggle('collapsed');
-      gasMenu.classList.toggle('expanded', !isCollapsed);
+      requestAnimationFrame(() => {
+        const isCollapsed = gasSubmenu.classList.toggle('collapsed');
+        gasMenu.classList.toggle('expanded', !isCollapsed);
+      });
     });
 </script>
+
 
 
 

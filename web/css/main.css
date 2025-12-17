@@ -457,11 +457,11 @@ body {
 }
 
 .submenu-arrow {
-  font-size: 16px;
-  color: #cfd3d8;
-  transition: transform 0.25s ease, color 0.25s ease;
-  margin-right: 6px;
+  transition:
+    transform 0.35s cubic-bezier(.4, 0, .2, 1),
+    color 0.25s ease;
 }
+
 
 /* Повернутая стрелка (открыто) */
 .menu-item.expanded .submenu-arrow {
@@ -469,17 +469,7 @@ body {
   color: #ffb300;
 }
 
-/* ===== СВОРАЧИВАНИЕ ПОДМЕНЮ ===== */
 
-.submenu {
-  margin-left: 54px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-
-  max-height: 500px;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.25s ease;
-}
 
 .submenu.collapsed {
   max-height: 0;
@@ -488,18 +478,35 @@ body {
   margin-bottom: 0;
 }
 
+/* ===== ПЛАВНОЕ СВОРАЧИВАНИЕ ПОДМЕНЮ ===== */
 
-/* ===== ВЛОЖЕННОЕ ПОДМЕНЮ (G-КАМЕРЫ) ===== */
-
+.submenu,
 .submenu-nested {
-  margin-left: 18px;
-  margin-top: 4px;
-  margin-bottom: 6px;
-
-  max-height: 400px;
   overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.25s ease;
+  transform-origin: top;
+  transition:
+    transform 0.35s cubic-bezier(.4, 0, .2, 1),
+    opacity 0.25s ease,
+    margin 0.3s ease;
 }
+
+/* открыто */
+.submenu:not(.collapsed),
+.submenu-nested:not(.collapsed) {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* закрыто */
+.submenu.collapsed,
+.submenu-nested.collapsed {
+  transform: scaleY(0.85);
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 
 .submenu-nested.collapsed {
   max-height: 0;
@@ -524,6 +531,22 @@ body {
 /* активная вложенная камера */
 .submenu-item.nested.active {
   background: rgba(255, 179, 0, 0.28);
+}
+
+.submenu-item,
+.submenu-item.nested {
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.submenu:not(.collapsed) .submenu-item {
+  transform: translateY(0);
+}
+
+.submenu.collapsed .submenu-item {
+  transform: translateY(-6px);
 }
 
 
