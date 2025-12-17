@@ -26,6 +26,8 @@
 
 
 <div class="app">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
     <!-- ЛЕВАЯ ПАНЕЛЬ -->
     <aside class="sidebar">
@@ -128,6 +130,7 @@
         <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
         <div class="top-bar">
             <div class="top-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
                 <span class="page-title">Общий план</span>
             </div>
             <div class="top-right">
@@ -395,6 +398,33 @@
       requestAnimationFrame(() => {
         const isCollapsed = coldSubmenu.classList.toggle('collapsed');
         coldMenu.classList.toggle('expanded', !isCollapsed);
+      });
+    });
+</script>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+</script>
+
+<script>
+    document.querySelectorAll('.menu-item, .submenu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        }
       });
     });
 </script>
