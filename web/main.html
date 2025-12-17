@@ -18,6 +18,12 @@
 
 </head>
 <body>
+<script>
+    if (localStorage.getItem('isAuthenticated') !== 'true') {
+      window.location.href = 'index.html';
+    }
+</script>
+
 
 <div class="app">
 
@@ -257,15 +263,16 @@
       // выход
       logoutBtn.addEventListener('click', () => {
 
-        // ❗ ВАЖНО:
-        // НЕ чистим localStorage полностью
-        // чтобы remember me сохранился
+        localStorage.removeItem('isAuthenticated');
 
         window.location.href = 'index.html';
       });
 
     });
 </script>
+<!-- MQTT -->
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script src="js/mqtt.js"></script>
 
 
 </body>

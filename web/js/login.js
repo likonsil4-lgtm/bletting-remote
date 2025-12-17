@@ -15,6 +15,8 @@ window.addEventListener('load', () => {
     loginInput.value = localStorage.getItem('rememberLogin') || '';
     passwordInput.value = localStorage.getItem('rememberPassword') || '';
     rememberCheckbox.checked = true;
+  } else {
+    rememberCheckbox.checked = false;
   }
 });
 
@@ -27,18 +29,24 @@ form.addEventListener('submit', e => {
 
   if (login === 'admin' && pass === '1432') {
 
+    // ✅ флаг авторизации
+    localStorage.setItem('isAuthenticated', 'true');
+
+    // ✅ запомнить меня
     if (rememberCheckbox.checked) {
       localStorage.setItem('rememberEnabled', 'true');
       localStorage.setItem('rememberLogin', login);
       localStorage.setItem('rememberPassword', pass);
     } else {
-      localStorage.clear();
+      localStorage.removeItem('rememberEnabled');
+      localStorage.removeItem('rememberLogin');
+      localStorage.removeItem('rememberPassword');
     }
 
-    // показать загрузку
+    // ✅ показать загрузку
     overlay.classList.add('show');
 
-    // имитация подгрузки
+    // ✅ плавный переход
     setTimeout(() => {
       window.location.href = 'main.html';
     }, 1200);
@@ -58,9 +66,11 @@ function hideError() {
 loginInput.addEventListener('focus', hideError);
 passwordInput.addEventListener('focus', hideError);
 
-/* ===== СБРОС ЗАПОМНИТЬ МЕНЯ ===== */
+/* ===== ЕСЛИ СНЯЛИ ГАЛОЧКУ — ЧИСТИМ ТОЛЬКО ДАННЫЕ ВХОДА ===== */
 rememberCheckbox.addEventListener('change', () => {
   if (!rememberCheckbox.checked) {
-    localStorage.clear();
+    localStorage.removeItem('rememberEnabled');
+    localStorage.removeItem('rememberLogin');
+    localStorage.removeItem('rememberPassword');
   }
 });
