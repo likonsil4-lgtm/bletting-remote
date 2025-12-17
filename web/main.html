@@ -72,9 +72,26 @@
                 </div>
 
                 <!-- Холодильные камеры -->
-                <div class="submenu-item" data-page="cold">
-                    Холодильные камеры
+                <div class="submenu-item has-submenu" id="coldMenu">
+                    <span>Холодильные камеры</span>
+                    <span class="submenu-arrow small">▾</span>
                 </div>
+
+                <div class="submenu submenu-nested collapsed" id="coldSubmenu">
+                    <div class="submenu-item nested" data-page="cold-c1">
+                        Камера C-1
+                    </div>
+                    <div class="submenu-item nested" data-page="cold-c2">
+                        Камера C-2
+                    </div>
+                    <div class="submenu-item nested" data-page="cold-c3">
+                        Камера C-3
+                    </div>
+                    <div class="submenu-item nested" data-page="cold-c4">
+                        Камера C-4
+                    </div>
+                </div>
+
 
             </div>
 
@@ -322,32 +339,31 @@
 <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 <script src="js/mqtt.js"></script>
 <script>
-    document.querySelectorAll('.submenu-item').forEach(item => {
-      item.addEventListener('click', () => {
+    document.querySelectorAll('.submenu-item.nested').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
 
-        // активный пункт
-        document.querySelectorAll('.submenu-item')
+        document.querySelectorAll('.submenu-item.nested')
           .forEach(i => i.classList.remove('active'));
 
         item.classList.add('active');
 
         const page = item.dataset.page;
 
-        // пока просто логика переходов
-        if (page === 'overview') {
-          window.location.href = 'main.html';
-        }
+        // G камеры
+        if (page === 'gas-g1') window.location.href = 'pages/mnemo/gas-g1.html';
+        if (page === 'gas-g2') window.location.href = 'pages/mnemo/gas-g2.html';
+        if (page === 'gas-g3') window.location.href = 'pages/mnemo/gas-g3.html';
 
-        if (page === 'gas') {
-          window.location.href = 'pages/mnemo/gas.html';
-        }
-
-        if (page === 'cold') {
-          window.location.href = 'pages/mnemo/cold.html';
-        }
+        // C камеры
+        if (page === 'cold-c1') window.location.href = 'pages/mnemo/cold-c1.html';
+        if (page === 'cold-c2') window.location.href = 'pages/mnemo/cold-c2.html';
+        if (page === 'cold-c3') window.location.href = 'pages/mnemo/cold-c3.html';
+        if (page === 'cold-c4') window.location.href = 'pages/mnemo/cold-c4.html';
       });
     });
 </script>
+
 
 <script>
     mnemoMenu.addEventListener('click', () => {
@@ -365,6 +381,20 @@
       requestAnimationFrame(() => {
         const isCollapsed = gasSubmenu.classList.toggle('collapsed');
         gasMenu.classList.toggle('expanded', !isCollapsed);
+      });
+    });
+</script>
+
+<script>
+    const coldMenu = document.getElementById('coldMenu');
+    const coldSubmenu = document.getElementById('coldSubmenu');
+
+    coldMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      requestAnimationFrame(() => {
+        const isCollapsed = coldSubmenu.classList.toggle('collapsed');
+        coldMenu.classList.toggle('expanded', !isCollapsed);
       });
     });
 </script>
