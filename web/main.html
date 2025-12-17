@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Bletting Manager</title>
     <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* ❌ Запрет выделения текста на экране "Общий план" */
+        .content-body,
+        svg,
+        svg text {
+          user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -17,158 +29,165 @@
 
         <nav class="menu">
             <div class="menu-item active">
-                <span class="icon">
-                   <img src="icons/mnemo.png" class="icon-mnemo">
-                </span>
+                <span class="icon"><img src="icons/mnemo.png"></span>
                 <span>Мнемосхемы</span>
             </div>
-
             <div class="menu-item">
-                <span class="icon">
-                   <img src="icons/graf.png" class="icon-graf">
-                </span>
+                <span class="icon"><img src="icons/graf.png"></span>
                 <span>Графики</span>
             </div>
-
             <div class="menu-item">
-                <span class="icon">
-                   <img src="icons/anal.png" class="icon-anal">
-                </span>
+                <span class="icon"><img src="icons/anal.png"></span>
                 <span>Аналитика</span>
             </div>
-
             <div class="menu-item">
-                <span class="icon">
-                   <img src="icons/soob.png" class="icon-soob">
-                </span>
+                <span class="icon"><img src="icons/soob.png"></span>
                 <span>Сообщения</span>
             </div>
-
             <div class="menu-item danger">
-                <span class="icon">
-                   <img src="icons/warn.png" class="icon-warn">
-                </span>
+                <span class="icon"><img src="icons/warn.png"></span>
                 <span>Аварии</span>
             </div>
         </nav>
     </aside>
 
-    <!-- ОСНОВНАЯ ОБЛАСТЬ -->
+    <!-- ОСНОВНОЕ -->
     <main class="content">
-        <!-- ВЕРХНЯЯ ПАНЕЛЬ (БРОВЬ) -->
+
+        <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
         <div class="top-bar">
             <div class="top-left">
                 <span class="page-title">Общий план</span>
             </div>
-
             <div class="top-right">
                 <button class="top-btn">
                     <img src="icons/refresh.png">
                     <span>Обновить</span>
                 </button>
-
                 <div class="date-box">
                     <img src="icons/calendar.png">
-                    <span id="dateTime">17 декабря, 14:29:06</span>
+                    <span>17 декабря, 14:29:06</span>
                 </div>
-
-                <button class="icon-btn">
-                    <img src="icons/settings.png">
-                </button>
-
-                <button class="icon-btn">
-                    <img src="icons/user.png">
-                </button>
+                <button class="icon-btn"><img src="icons/settings.png"></button>
+                <button class="icon-btn"><img src="icons/user.png"></button>
             </div>
         </div>
 
-        <!-- ОСНОВНОЙ КОНТЕНТ -->
+        <!-- МНЕМОСХЕМА -->
         <div class="content-body">
+
             <svg viewBox="0 0 1200 800" width="100%" height="100%">
 
-                <!-- ФОН -->
+                <!-- ===== СТИЛИ SVG ===== -->
+                <style>
+                    .camera {
+                      stroke: #3b3f44;
+                      stroke-width: 2.5;
+                      cursor: pointer;
+                      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+                    }
+
+                    .camera.active {
+                      filter:
+                        drop-shadow(0 0 14px rgba(255,255,255,0.75))
+                        brightness(1.08);
+                    }
+
+                    /* Цвета камер */
+                    .cam-yellow { fill: #f4f48a; }
+                    .cam-green  { fill: #9af59a; }
+                    .cam-cyan   { fill: #9feff5; }
+                    .cam-purple { fill: #e6c6ff; }
+                    .cam-orange { fill: #f2d28a; }
+
+                    /* Температура */
+                    .temp-box {
+                      fill: #dedede;
+                      stroke: #2c2f33;
+                      stroke-width: 2;
+                      rx: 6;
+                      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.45));
+                    }
+
+                    .temp-text {
+                      fill: #111;
+                      font-size: 17px;
+                      font-weight: 600;
+                      text-anchor: middle;
+                      dominant-baseline: middle;
+                      pointer-events: none;
+                    }
+                </style>
+
+                <!-- ===== ФОН ===== -->
                 <rect x="0" y="0" width="1200" height="800" fill="#2e3238"/>
 
-                <!-- КОРИДОР -->
-                <rect x="560" y="50" width="80" height="700"
-                      fill="#8a8a8a"
-                      stroke="#8a8a8a"
-                      stroke-width="2"/>
+                <!-- ===== КОРИДОР (НЕ КЛИКАБЕЛЬНЫЙ) ===== -->
+                <rect x="560" y="50" width="80" height="700" fill="#9a9a9a"/>
 
-                <!-- СТЕНА -->
-                <rect x="10" y="300" width="200" height="100"
-                      fill="#8a8a8a"
-                      stroke="#8a8a8a"
-                      stroke-width="2"/>
+                <!-- ===== СТЕНА ===== -->
+                <rect x="10" y="300" width="200" height="100" fill="#9a9a9a"/>
 
-                <!-- G1 -->
-                <rect x="10" y="50" width="200" height="250"
-                      rx="10" ry="0"
-                      fill="#3a3f45"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="109" y="230" fill="#ffffff" text-anchor="middle">G-1</text>
+                <!-- ===== КАМЕРЫ ===== -->
 
-                <!-- G2 -->
-                <rect x="358" y="50" width="200" height="300"
-                      rx="10" ry="0"
-                      fill="#3a3f45"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="452" y="250" fill="#ffffff" text-anchor="middle">G-2</text>
+                <!-- G-1 -->
+                <rect class="camera cam-yellow" x="10" y="50" width="200" height="250" rx="0"/>
+                <rect class="temp-box" x="65" y="150" width="90" height="34"/>
+                <text class="temp-text" x="110" y="167">21.4 °C</text>
+                <text x="110" y="230" fill="#222" font-weight="600" text-anchor="middle">G-1</text>
 
-                <!-- G3 -->
-                <rect x="358" y="351" width="200" height="300"
-                      rx="10" ry="0"
-                      fill="#3a3f45"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="453" y="531" fill="#ffffff" text-anchor="middle">G-3</text>
+                <!-- G-2 -->
+                <rect class="camera cam-green" x="358" y="50" width="200" height="300" rx="0"/>
+                <rect class="temp-box" x="413" y="170" width="90" height="34"/>
+                <text class="temp-text" x="458" y="187">7.2 °C</text>
+                <text x="458" y="260" fill="#222" font-weight="600" text-anchor="middle">G-2</text>
 
-                <!-- C1 -->
-                <rect x="10" y="400" width="200" height="250"
-                      rx="8" ry="0"
-                      fill="#424850"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="109" y="565" fill="#ffffff" text-anchor="middle">C-1</text>
+                <!-- G-3 -->
+                <rect class="camera cam-green" x="358" y="360" width="200" height="300" rx="0"/>
+                <rect class="temp-box" x="413" y="480" width="90" height="34"/>
+                <text class="temp-text" x="458" y="497">—</text>
+                <text x="458" y="560" fill="#222" font-weight="600" text-anchor="middle">G-3</text>
 
-                <!-- C2 -->
-                <rect x="642" y="50" width="190" height="250"
-                      rx="8" ry="0"
-                      fill="#424850"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="735" y="210" fill="#ffffff" text-anchor="middle">C-2</text>
+                <!-- C-1 -->
+                <rect class="camera cam-yellow" x="10" y="400" width="200" height="250" rx="0"/>
+                <rect class="temp-box" x="65" y="520" width="90" height="34"/>
+                <text class="temp-text" x="110" y="537">—</text>
+                <text x="110" y="610" fill="#222" font-weight="600" text-anchor="middle">C-1</text>
 
-                <!-- C3 -->
-                <rect x="950" y="50" width="245" height="210"
-                      rx="8" ry="0"
-                      fill="#424850"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="1074" y="200" fill="#ffffff" text-anchor="middle">C-3</text>
+                <!-- C-2 -->
+                <rect class="camera cam-cyan" x="642" y="50" width="190" height="250" rx="0"/>
+                <rect class="temp-box" x="690" y="170" width="90" height="34"/>
+                <text class="temp-text" x="735" y="187">7.7 °C</text>
+                <text x="735" y="260" fill="#222" font-weight="600" text-anchor="middle">C-2</text>
 
-                <!-- C4 -->
-                <rect x="950" y="260.5" width="245" height="210"
-                      rx="8" ry="0"
-                      fill="#424850"
-                      stroke="#6b6f75"
-                      stroke-width="2"/>
-                <text x="1074" y="400" fill="#ffffff" text-anchor="middle">C-4</text>
+                <!-- C-3 -->
+                <rect class="camera cam-purple" x="950" y="50" width="245" height="210" rx="0"/>
+                <rect class="temp-box" x="1027" y="140" width="90" height="34"/>
+                <text class="temp-text" x="1072" y="157">6.3 °C</text>
+                <text x="1072" y="210" fill="#222" font-weight="600" text-anchor="middle">C-3</text>
+
+                <!-- C-4 -->
+                <rect class="camera cam-purple" x="950" y="270" width="245" height="210" rx="0"/>
+                <rect class="temp-box" x="1027" y="360" width="90" height="34"/>
+                <text class="temp-text" x="1072" y="377">4.6 °C</text>
+                <text x="1072" y="440" fill="#222" font-weight="600" text-anchor="middle">C-4</text>
 
             </svg>
+
         </div>
-
-
     </main>
+</div>
 
-</div>
-<!-- Оверлей загрузки -->
-<div class="loading-overlay" id="loadingOverlay">
-    <div class="loader"></div>
-    <div class="loading-text">Загрузка…</div>
-</div>
+<!-- ===== ЛОГИКА НАЖАТИЯ ===== -->
+<script>
+    const cameras = document.querySelectorAll('.camera');
+
+    cameras.forEach(cam => {
+      cam.addEventListener('mousedown', () => cam.classList.add('active'));
+      cam.addEventListener('mouseup',   () => cam.classList.remove('active'));
+      cam.addEventListener('mouseleave',() => cam.classList.remove('active'));
+    });
+</script>
 
 </body>
 </html>

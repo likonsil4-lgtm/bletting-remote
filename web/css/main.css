@@ -277,6 +277,76 @@ body {
     pointer-events: none;
 }
 
+/* =========================
+   SVG – МНЕМОСХЕМА СТИЛЬ
+   ========================= */
+
+.content-body svg {
+  background: #2e3238;
+}
+
+/* ОБЩИЕ БЛОКИ */
+.content-body svg rect {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+/* G-КАМЕРЫ */
+.content-body svg rect[fill="#3a3f45"] {
+  fill: linear-gradient(145deg, #3f454c, #2f343a);
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45));
+}
+
+/* C-КАМЕРЫ */
+.content-body svg rect[fill="#424850"] {
+  fill: linear-gradient(145deg, #4a515a, #363b42);
+  filter: drop-shadow(0 5px 8px rgba(0,0,0,0.4));
+}
+
+/* КОРИДОР */
+.content-body svg rect[fill="#8a8a8a"] {
+  fill: linear-gradient(to right, #9a9a9a, #7d7d7d, #9a9a9a);
+}
+
+/* ТЕКСТ */
+.content-body svg text {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  fill: #f1f1f1;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* HOVER */
+.camera:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08)
+          drop-shadow(0 8px 14px rgba(0,0,0,0.5));
+}
+
+/* АКТИВНЫЙ БЛОК */
+.content-body svg rect.active {
+  outline: 2px solid #ffb300;
+  filter:
+    drop-shadow(0 0 12px rgba(255,179,0,0.8))
+    drop-shadow(0 10px 18px rgba(0,0,0,0.6));
+}
+/* Запрет выделения текста на экране "Общий вид" */
+.content,
+.content * {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.camera:active {
+  filter:
+    drop-shadow(0 2px 3px rgba(0,0,0,0.5))
+    brightness(1.05);
+}
+
+
 
 
 
