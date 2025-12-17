@@ -198,3 +198,14 @@ input:-webkit-autofill {
   box-shadow: 0 0 0 1000px #3a3d42 inset;
   -webkit-text-fill-color: #e0e0e0;
 }
+
+
+.login-screen {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.login-screen.fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+}
+

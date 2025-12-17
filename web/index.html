@@ -7,18 +7,15 @@
 </head>
 <body>
 
-<div class="login-screen">
+<div class="login-screen" id="loginScreen">
     <div class="login-box">
 
-        <!-- логотип (НЕ двигается) -->
         <img src="assets/logo.png" class="logo" draggable="false">
 
-        <!-- красное сообщение -->
         <div class="error-box" id="error">
             Неправильное имя пользователя или пароль
         </div>
 
-        <!-- всё, что должно уезжать вниз -->
         <div class="form-wrapper" id="formWrapper">
             <form id="loginForm">
                 <input type="text" id="login" placeholder="Имя пользователя">
@@ -38,74 +35,8 @@
         </div>
 
     </div>
-    <script>
-        const form = document.getElementById('loginForm');
-        const loginInput = document.getElementById('login');
-        const passwordInput = document.getElementById('password');
-        const rememberCheckbox = document.getElementById('remember');
+</div>
 
-        const error = document.getElementById('error');
-        const wrapper = document.getElementById('formWrapper');
-
-        /* ===== ЗАГРУЗКА СОСТОЯНИЯ ===== */
-        window.addEventListener('load', () => {
-          const rememberEnabled = localStorage.getItem('rememberEnabled');
-
-          if (rememberEnabled === 'true') {
-            loginInput.value = localStorage.getItem('rememberLogin') || '';
-            passwordInput.value = localStorage.getItem('rememberPassword') || '';
-            rememberCheckbox.checked = true;
-          } else {
-            rememberCheckbox.checked = false;
-            loginInput.value = '';
-            passwordInput.value = '';
-          }
-        });
-
-        /* ===== ВХОД ===== */
-        form.addEventListener('submit', e => {
-          e.preventDefault();
-
-          const login = loginInput.value;
-          const pass = passwordInput.value;
-
-          if (login === 'admin' && pass === '1432') {
-
-            if (rememberCheckbox.checked) {
-              localStorage.setItem('rememberEnabled', 'true');
-              localStorage.setItem('rememberLogin', login);
-              localStorage.setItem('rememberPassword', pass);
-            } else {
-              localStorage.clear();
-            }
-
-            alert('Успешный вход');
-
-          } else {
-            error.classList.add('show');
-            wrapper.classList.add('shift');
-          }
-        });
-
-        /* ===== СКРЫТИЕ ОШИБКИ ПРИ ФОКУСЕ ===== */
-        function hideError() {
-          error.classList.remove('show');
-          wrapper.classList.remove('shift');
-        }
-
-        loginInput.addEventListener('focus', hideError);
-        passwordInput.addEventListener('focus', hideError);
-
-        /* ===== ЕСЛИ СНЯЛИ ГАЛОЧКУ — СРАЗУ ЧИСТИМ ===== */
-        rememberCheckbox.addEventListener('change', () => {
-          if (!rememberCheckbox.checked) {
-            localStorage.clear();
-          }
-        });
-    </script>
-
-
-
-
+<script src="js/login.js"></script>
 </body>
 </html>
