@@ -1,5 +1,3 @@
-console.log("login.js loaded");
-
 const form = document.getElementById('loginForm');
 const loginInput = document.getElementById('login');
 const passwordInput = document.getElementById('password');
@@ -7,11 +5,13 @@ const rememberCheckbox = document.getElementById('remember');
 
 const error = document.getElementById('error');
 const wrapper = document.getElementById('formWrapper');
-const screen = document.getElementById('loginScreen');
+const overlay = document.getElementById('loadingOverlay');
 
 /* ===== ЗАГРУЗКА СОСТОЯНИЯ ===== */
 window.addEventListener('load', () => {
-  if (localStorage.getItem('rememberEnabled') === 'true') {
+  const rememberEnabled = localStorage.getItem('rememberEnabled');
+
+  if (rememberEnabled === 'true') {
     loginInput.value = localStorage.getItem('rememberLogin') || '';
     passwordInput.value = localStorage.getItem('rememberPassword') || '';
     rememberCheckbox.checked = true;
@@ -22,8 +22,8 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  const login = loginInput.value;
-  const pass = passwordInput.value;
+  const login = loginInput.value.trim();
+  const pass = passwordInput.value.trim();
 
   if (login === 'admin' && pass === '1432') {
 
@@ -35,13 +35,13 @@ form.addEventListener('submit', e => {
       localStorage.clear();
     }
 
-    // 🔥 ПЛАВНЫЙ УХОД
-    screen.style.transition = 'opacity 0.6s ease';
-    screen.style.opacity = '0';
+    // показать загрузку
+    overlay.classList.add('show');
 
+    // имитация подгрузки
     setTimeout(() => {
       window.location.href = 'main.html';
-    }, 600);
+    }, 1200);
 
   } else {
     error.classList.add('show');
@@ -58,7 +58,7 @@ function hideError() {
 loginInput.addEventListener('focus', hideError);
 passwordInput.addEventListener('focus', hideError);
 
-/* ===== REMEMBER ===== */
+/* ===== СБРОС ЗАПОМНИТЬ МЕНЯ ===== */
 rememberCheckbox.addEventListener('change', () => {
   if (!rememberCheckbox.checked) {
     localStorage.clear();
