@@ -119,10 +119,92 @@ body {
   padding: 14px 16px;
 }
 
-.menu-item .text {
-  position: relative;
-  top: -1px;             /* микро-подстройка вверх/вниз */
+/* ===== ВЕРХНЯЯ ПАНЕЛЬ ===== */
+.top-bar {
+    height: 56px;
+    background: #2f3339;
+    border-bottom: 1px solid #3b4046;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+    user-select: none;
 }
+
+.top-left {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.page-title {
+    font-weight: 500;
+}
+
+/* ===== ПРАВАЯ ЧАСТЬ ===== */
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: #3a3f45;
+    border: 1px solid #4a4f55;
+    color: #e0e0e0;
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.top-btn:hover {
+    background: #454a50;
+}
+
+.date-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: #3a3f45;
+    border: 1px solid #4a4f55;
+    padding: 6px 10px;
+    border-radius: 4px;
+
+    color: #e0e0e0;
+}
+
+.icon-btn {
+    width: 34px;
+    height: 34px;
+
+    background: #3a3f45;
+    border: 1px solid #4a4f55;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background: #454a50;
+}
+
+.top-bar img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
 
 
 
