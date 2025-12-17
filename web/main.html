@@ -69,7 +69,13 @@
                     <span id="dateTime">--</span>
                 </div>
                 <button class="icon-btn"><img src="icons/settings.png"></button>
-                <button class="icon-btn"><img src="icons/user.png"></button>
+                <button class="icon-btn" id="userBtn"><img src="icons/user.png"></button>
+                <div class="user-popup" id="userPopup">
+                    <div class="user-name">
+                        Пользователь: <b id="currentUser">admin</b>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">Выйти</button>
+                </div>
             </div>
         </div>
 
@@ -222,6 +228,41 @@
 
       // каждую секунду
       setInterval(updateDateTime, 1000);
+
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const userBtn = document.getElementById('userBtn');
+      const userPopup = document.getElementById('userPopup');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const currentUser = document.getElementById('currentUser');
+
+      // текущий пользователь
+      const user = localStorage.getItem('rememberLogin') || 'admin';
+      currentUser.textContent = user;
+
+      // открыть / закрыть popup
+      userBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userPopup.classList.toggle('show');
+      });
+
+      // клик вне popup — закрыть
+      document.addEventListener('click', () => {
+        userPopup.classList.remove('show');
+      });
+
+      // выход
+      logoutBtn.addEventListener('click', () => {
+
+        // ❗ ВАЖНО:
+        // НЕ чистим localStorage полностью
+        // чтобы remember me сохранился
+
+        window.location.href = 'index.html';
+      });
 
     });
 </script>
