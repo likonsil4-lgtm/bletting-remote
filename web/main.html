@@ -34,26 +34,74 @@
         </div>
 
         <nav class="menu">
-            <div class="menu-item active">
-                <span class="icon"><img src="icons/mnemo.png"></span>
-                <span>Мнемосхемы</span>
+
+            <!-- МНЕМОСХЕМЫ -->
+            <div class="menu-item active has-submenu" id="mnemoMenu">
+                <div class="menu-left">
+                    <span class="icon"><img src="icons/mnemo.png"></span>
+                    <span>Мнемосхемы</span>
+                </div>
+
+                <div class="submenu-arrow" id="mnemoArrow">
+                    ▾
+                </div>
             </div>
+            <div class="submenu" id="mnemoSubmenu">
+
+                <!-- Общий вид -->
+                <div class="submenu-item active" data-page="overview">
+                    Общий вид
+                </div>
+
+                <!-- Камеры газации -->
+                <div class="submenu-item has-submenu" id="gasMenu">
+                    <span>Камеры газации</span>
+                    <span class="submenu-arrow small">▾</span>
+                </div>
+
+                <div class="submenu submenu-nested collapsed" id="gasSubmenu">
+                    <div class="submenu-item nested" data-page="gas-g1">
+                        Камера G-1
+                    </div>
+                    <div class="submenu-item nested" data-page="gas-g2">
+                        Камера G-2
+                    </div>
+                    <div class="submenu-item nested" data-page="gas-g3">
+                        Камера G-3
+                    </div>
+                </div>
+
+                <!-- Холодильные камеры -->
+                <div class="submenu-item" data-page="cold">
+                    Холодильные камеры
+                </div>
+
+            </div>
+
+
+
+
+            <!-- ОСТАЛЬНЫЕ ПУНКТЫ -->
             <div class="menu-item">
                 <span class="icon"><img src="icons/graf.png"></span>
                 <span>Графики</span>
             </div>
+
             <div class="menu-item">
                 <span class="icon"><img src="icons/anal.png"></span>
                 <span>Аналитика</span>
             </div>
+
             <div class="menu-item">
                 <span class="icon"><img src="icons/soob.png"></span>
                 <span>Сообщения</span>
             </div>
+
             <div class="menu-item danger">
                 <span class="icon"><img src="icons/warn.png"></span>
                 <span>Аварии</span>
             </div>
+
         </nav>
     </aside>
 
@@ -273,6 +321,61 @@
 <!-- MQTT -->
 <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 <script src="js/mqtt.js"></script>
+<script>
+    document.querySelectorAll('.submenu-item').forEach(item => {
+      item.addEventListener('click', () => {
+
+        // активный пункт
+        document.querySelectorAll('.submenu-item')
+          .forEach(i => i.classList.remove('active'));
+
+        item.classList.add('active');
+
+        const page = item.dataset.page;
+
+        // пока просто логика переходов
+        if (page === 'overview') {
+          window.location.href = 'main.html';
+        }
+
+        if (page === 'gas') {
+          window.location.href = 'pages/mnemo/gas.html';
+        }
+
+        if (page === 'cold') {
+          window.location.href = 'pages/mnemo/cold.html';
+        }
+      });
+    });
+</script>
+
+<script>
+    const mnemoMenu = document.getElementById('mnemoMenu');
+    const mnemoSubmenu = document.getElementById('mnemoSubmenu');
+
+    // по умолчанию — открыто
+    mnemoMenu.classList.add('expanded');
+    mnemoSubmenu.classList.remove('collapsed');
+
+    mnemoMenu.addEventListener('click', () => {
+      const isCollapsed = mnemoSubmenu.classList.toggle('collapsed');
+      mnemoMenu.classList.toggle('expanded', !isCollapsed);
+    });
+</script>
+
+
+<script>
+    const gasMenu = document.getElementById('gasMenu');
+    const gasSubmenu = document.getElementById('gasSubmenu');
+
+    gasMenu.addEventListener('click', (e) => {
+      e.stopPropagation(); // важно!
+
+      const isCollapsed = gasSubmenu.classList.toggle('collapsed');
+      gasMenu.classList.toggle('expanded', !isCollapsed);
+    });
+</script>
+
 
 
 </body>

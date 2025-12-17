@@ -403,6 +403,130 @@ body {
 }
 
 
+/* ===== SUBMENU (Мнемосхемы) ===== */
+
+.has-submenu {
+  cursor: default;
+}
+
+.submenu {
+  margin-left: 54px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.submenu-item {
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #cfd3d8;
+  cursor: pointer;
+  border-radius: 6px;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.submenu-item:hover {
+  background: rgba(255, 179, 0, 0.15);
+  color: #ffffff;
+}
+
+.submenu-item.active {
+  background: rgba(255, 179, 0, 0.35);
+  color: #ffffff;
+
+  box-shadow:
+    inset 0 0 12px rgba(255, 179, 0, 0.18);
+}
+
+
+/* ===== МНЕМОСХЕМЫ: СТРЕЛКА ===== */
+
+.menu-item.has-submenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.submenu-arrow {
+  font-size: 16px;
+  color: #cfd3d8;
+  transition: transform 0.25s ease, color 0.25s ease;
+  margin-right: 6px;
+}
+
+/* Повернутая стрелка (открыто) */
+.menu-item.expanded .submenu-arrow {
+  transform: rotate(180deg);
+  color: #ffb300;
+}
+
+/* ===== СВОРАЧИВАНИЕ ПОДМЕНЮ ===== */
+
+.submenu {
+  margin-left: 54px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.submenu.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* ===== ВЛОЖЕННОЕ ПОДМЕНЮ (G-КАМЕРЫ) ===== */
+
+.submenu-nested {
+  margin-left: 18px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+
+  max-height: 400px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+
+.submenu-nested.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* уменьшенная стрелка */
+.submenu-arrow.small {
+  font-size: 13px;
+  margin-left: auto;
+}
+
+/* вложенные пункты */
+.submenu-item.nested {
+  padding-left: 26px;
+  font-size: 13.5px;
+  opacity: 0.95;
+}
+
+/* активная вложенная камера */
+.submenu-item.nested.active {
+  background: rgba(255, 179, 0, 0.28);
+}
+
+
 
 
 
