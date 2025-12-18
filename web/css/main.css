@@ -701,6 +701,22 @@ body.mobile .page-title {
   font-size: 16px;
 }
 
+/* ===== DESKTOP / MOBILE VISIBILITY RULES ===== */
+
+/* по умолчанию (ПК) */
+.mobile-cameras {
+  display: none;
+}
+
+/* мобильный режим */
+body.mobile .content-body svg {
+  display: none;
+}
+
+body.mobile .mobile-cameras {
+  display: grid;
+}
+
 
 
 
