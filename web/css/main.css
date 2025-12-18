@@ -779,6 +779,32 @@ body.mobile .sidebar nav {
   touch-action: pan-y;
 }
 
+/* ===== DESKTOP SIDEBAR SCROLL ===== */
+
+body:not(.mobile) .sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body:not(.mobile) .sidebar nav {
+  flex: 1;
+  overflow-y: auto;
+}
+
+body:not(.mobile) .sidebar nav {
+  scrollbar-width: thin;            /* Firefox */
+}
+
+body:not(.mobile) .sidebar nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+body:not(.mobile) .sidebar nav::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+}
+
 
 
 
