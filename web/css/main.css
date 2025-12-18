@@ -839,6 +839,17 @@ body.mobile .icon-btn span {
   display: none;
 }
 
+/* ===== SVG TEMPERATURE CLICK HOVER ===== */
+
+.camera-temp:hover .temp-box {
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.camera-temp:hover .temp-text {
+  fill: #000;
+}
+
 
 
 
