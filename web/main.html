@@ -343,42 +343,7 @@
       cam.addEventListener('mouseleave',() => cam.classList.remove('active'));
     });
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-      function updateDateTime() {
-        const now = new Date();
-
-        const months = [
-          'января', 'февраля', 'марта', 'апреля',
-          'мая', 'июня', 'июля', 'августа',
-          'сентября', 'октября', 'ноября', 'декабря'
-        ];
-
-        const day = now.getDate();
-        const month = months[now.getMonth()];
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-
-        const text = `${day} ${month}, ${h}:${m}:${s}`;
-
-        const el = document.getElementById('dateTime');
-        if (el) {
-          el.textContent = text;
-        } else {
-          console.error('Элемент #dateTime не найден');
-        }
-      }
-
-      // сразу
-      updateDateTime();
-
-      // каждую секунду
-      setInterval(updateDateTime, 1000);
-
-    });
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -525,7 +490,7 @@
     });
 </script>
 
-
+<script src="js/app.js"></script>
 
 
 </body>
