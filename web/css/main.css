@@ -928,6 +928,15 @@ body.mobile .icon-btn img {
   display: block;
 }
 
+/* ===== MOBILE CAMERA CARD LINKS ===== */
+
+.camera-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
 
 
 
