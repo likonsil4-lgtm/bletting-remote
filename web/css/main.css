@@ -717,6 +717,28 @@ body.mobile .mobile-cameras {
   display: grid;
 }
 
+/* ===== MOBILE TOP BAR FIX ===== */
+
+body.mobile .top-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.mobile .page-title {
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 1;
+}
+
+body.mobile .page-title {
+  margin: 0;
+}
+
+body.mobile .menu-toggle {
+  margin: 0;
+}
+
 
 
 
