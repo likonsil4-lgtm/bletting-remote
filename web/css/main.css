@@ -739,6 +739,46 @@ body.mobile .menu-toggle {
   margin: 0;
 }
 
+/* ===== MOBILE SCROLL BASE ===== */
+
+body.mobile {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== MOBILE SIDEBAR SCROLL ===== */
+
+body.mobile .sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+body.mobile .sidebar nav {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== MOBILE CONTENT SCROLL ===== */
+
+body.mobile .content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.mobile .content-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.mobile .content-body svg {
+  overflow: hidden;
+  max-height: 100%;
+}
+
 
 
 
