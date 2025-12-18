@@ -850,40 +850,29 @@ body.mobile .icon-btn span {
   fill: #000;
 }
 
-/* ===== MOBILE TOP TIME (TEXT ONLY) ===== */
-
+/* ===== MOBILE TIME ONLY ===== */
 body.mobile .date-box {
   background: none;
   border: none;
+  box-shadow: none;
   padding: 0;
-  margin: 0 6px 0 auto;
+  margin-left: auto;
   display: flex;
   align-items: center;
 }
 
 body.mobile .date-box img {
-  display: none; /* убираем иконку */
+  display: none;
 }
 
 body.mobile .date-box span {
   font-size: 14px;
   font-weight: 500;
   color: #d6d6d6;
-  line-height: 1;
   white-space: nowrap;
+  line-height: 1;
 }
 
-body.mobile .top-right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-body.mobile .page-title {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 
 

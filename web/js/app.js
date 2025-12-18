@@ -11,26 +11,40 @@ detectMobile();
 window.addEventListener('resize', detectMobile);
 
 
-   // ===== DATE & TIME =====
-   function updateDateTime() {
-     const now = new Date();
-     const dateTimeEl = document.getElementById('dateTime');
-     if (!dateTimeEl) return;
+// ===== DATE & TIME =====
+function updateDateTime() {
+  const el = document.getElementById('dateTime');
+  if (!el) return;
 
-     if (document.body.classList.contains('mobile')) {
-       // 📱 только часы и минуты
-       dateTimeEl.textContent = now.toLocaleTimeString([], {
-         hour: '2-digit',
-         minute: '2-digit'
-       });
-     } else {
-       // 💻 полная дата + время
-       dateTimeEl.textContent = now.toLocaleString();
-     }
-   }
+  const now = new Date();
 
-   updateDateTime();
-   setInterval(updateDateTime, 60000);
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  if (document.body.classList.contains('mobile')) {
+    // 📱 только время
+    el.textContent = `${hours}:${minutes}`;
+  } else {
+    // 💻 дата + время
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+
+    el.textContent = `${day}.${month}.${year} ${hours}:${minutes}`;
+  }
+}
+
+
+// ===== INIT ORDER (КРИТИЧНО) =====
+
+// ⚠️ ждём, пока браузер применит layout
+setTimeout(() => {
+  updateDateTime();
+}, 0);
+
+// обновление раз в минуту
+setInterval(updateDateTime, 60000);
+
 
 function login() {
   const login = document.getElementById('login').value;
