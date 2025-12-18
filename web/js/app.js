@@ -1,3 +1,37 @@
+// ===== MOBILE DETECTION =====
+function detectMobile() {
+  if (window.innerWidth <= 900) {
+    document.body.classList.add('mobile');
+  } else {
+    document.body.classList.remove('mobile');
+  }
+}
+
+detectMobile();
+window.addEventListener('resize', detectMobile);
+
+
+   // ===== DATE & TIME =====
+   function updateDateTime() {
+     const now = new Date();
+     const dateTimeEl = document.getElementById('dateTime');
+     if (!dateTimeEl) return;
+
+     if (document.body.classList.contains('mobile')) {
+       // 📱 только часы и минуты
+       dateTimeEl.textContent = now.toLocaleTimeString([], {
+         hour: '2-digit',
+         minute: '2-digit'
+       });
+     } else {
+       // 💻 полная дата + время
+       dateTimeEl.textContent = now.toLocaleString();
+     }
+   }
+
+   updateDateTime();
+   setInterval(updateDateTime, 60000);
+
 function login() {
   const login = document.getElementById('login').value;
   const password = document.getElementById('password').value;
@@ -36,23 +70,6 @@ function notifyAndroid(event, data) {
   }
 }
 
-function updateDateTime() {
-  const now = new Date();
-  const dateTimeEl = document.getElementById('dateTime');
 
-  if (document.body.classList.contains('mobile')) {
-    // 📱 только часы и минуты
-    dateTimeEl.textContent = now.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  } else {
-    // 💻 полная дата + время
-    dateTimeEl.textContent = now.toLocaleString();
-  }
-}
-
-updateDateTime();
-setInterval(updateDateTime, 60000);
 
 
