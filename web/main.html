@@ -464,7 +464,11 @@
 </script>
 
 <script>
-    document.querySelectorAll('.menu-item, .submenu-item').forEach(item => {
+    // Закрываем меню ТОЛЬКО при клике на конечный пункт
+    document.querySelectorAll(
+      '.menu-item:not(.has-submenu), .submenu-item.nested'
+    ).forEach(item => {
+
       item.addEventListener('click', () => {
         if (window.innerWidth <= 900) {
           sidebar.classList.remove('open');
