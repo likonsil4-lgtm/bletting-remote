@@ -36,3 +36,23 @@ function notifyAndroid(event, data) {
   }
 }
 
+function updateDateTime() {
+  const now = new Date();
+  const dateTimeEl = document.getElementById('dateTime');
+
+  if (document.body.classList.contains('mobile')) {
+    // 📱 только часы и минуты
+    dateTimeEl.textContent = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  } else {
+    // 💻 полная дата + время
+    dateTimeEl.textContent = now.toLocaleString();
+  }
+}
+
+updateDateTime();
+setInterval(updateDateTime, 60000);
+
+
