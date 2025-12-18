@@ -611,11 +611,6 @@ body {
     padding-left: 12px;
   }
 
-  /* SVG */
-  .content-body {
-    overflow: auto;
-  }
-
   .content-body svg {
     min-width: 700px;
   }
@@ -623,15 +618,15 @@ body {
 
  /* ===== ANDROID WEBVIEW FIXES ===== */
 
- html, body {
-   overscroll-behavior: none;
-   touch-action: manipulation;
-   -webkit-tap-highlight-color: transparent;
- }
+html, body {
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
 
- body {
-   overflow: hidden;
- }
+/* ВАЖНО: scroll разрешаем, но управляем им ниже */
+body {
+  overflow: hidden;
+}
 
  /* ===== TOUCH FRIENDLY UI ===== */
 
@@ -777,6 +772,11 @@ body.mobile .content-body {
 body.mobile .content-body svg {
   overflow: hidden;
   max-height: 100%;
+}
+
+body.mobile .content-body,
+body.mobile .sidebar nav {
+  touch-action: pan-y;
 }
 
 
